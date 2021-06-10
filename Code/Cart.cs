@@ -6,8 +6,9 @@ namespace Code
 {
     public class Cart
     {
-        public const string PRODUCT_IS_NOT_IN_CATALOG = "El producto no pertecene a la editorial.";
+        public const string PRODUCT_IS_NOT_IN_CATALOG = "Product is not in catalog";
         public const string QUANTITY_GRATER_TAN_ZERO = "Quantity greater than 0";
+
         private List<object> products = new List<object>();
         private List<object> _catalog { get; }
         public Cart(List<object> catalog)
