@@ -8,23 +8,18 @@ namespace Test
     [TestClass]
     public class FactoryTest
     {
-        public object AnotherValidBook()
+        public Dictionary<object, double> Catalog()
         {
-            return "ISBN2";
-        }
-
-        public List<object> Catalog()
-        {
-            List<object> catalog = new List<object>();
-            catalog.Add(ValidBook());
-            catalog.Add(AnotherValidBook());
+            Dictionary<object, double> catalog = new Dictionary<object, double>();
+            catalog.Add(ValidBook(), 1000);
+            catalog.Add(AnotherValidBook(), 2000);
             return catalog;
         }
 
 
         public Cart EmptyCart()
         {
-            List<object> catalog = Catalog();
+            var catalog = Catalog();
             return new Cart(catalog);
         }
 
@@ -36,6 +31,11 @@ namespace Test
         public object ValidBook()
         {
             return "ISBN1";
+        }
+
+        public object AnotherValidBook()
+        {
+            return "ISBN2";
         }
     }
 }

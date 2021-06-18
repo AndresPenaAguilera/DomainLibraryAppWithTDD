@@ -85,5 +85,37 @@ namespace Test
             Assert.AreEqual(4, aCart.Count(AnotherValidBook()));
             Assert.AreEqual(7, aCart.Count());
         }
+
+        [TestMethod]
+        public void GetProducts()
+        {
+            var aCart = EmptyCart();
+
+            aCart.AddWithQuantity(ValidBook(), 3);
+            aCart.AddWithQuantity(AnotherValidBook(), 4);
+
+            Assert.AreEqual(7, aCart.Count());
+        }
+
+        [TestMethod]
+        public void CalculateTotalCostoForMoreThanOneProducts()
+        {
+            Cart aCart = EmptyCart();
+            aCart.AddWithQuantity(ValidBook(), 3);
+
+            Assert.AreEqual(3000, aCart.CalutateTotalCosts());
+        }
+
+
+        [TestMethod]
+        public void CalculateTotalCostForMultipleProducts()
+        {
+            Cart aCart = EmptyCart();
+            aCart.AddWithQuantity(ValidBook(), 3);
+            aCart.AddWithQuantity(AnotherValidBook(), 2);
+
+            Assert.AreEqual(7000, aCart.CalutateTotalCosts());
+        }
+
     }
 }

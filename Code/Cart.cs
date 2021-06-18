@@ -10,8 +10,8 @@ namespace Code
         public const string QUANTITY_GRATER_TAN_ZERO = "Quantity greater than 0";
 
         private List<object> products = new List<object>();
-        private List<object> _catalog { get; }
-        public Cart(List<object> catalog)
+        private Dictionary<object, double> _catalog { get; }
+        public Cart(Dictionary<object, double> catalog)
         {
             _catalog = catalog;
         }
@@ -55,7 +55,7 @@ namespace Code
 
         private void AssertValidProduct(object aIsbn)
         {
-            if (!_catalog.Contains(aIsbn))
+            if (!_catalog.ContainsKey(aIsbn))
             {
                 throw new Exception(PRODUCT_IS_NOT_IN_CATALOG);
             }
@@ -64,6 +64,23 @@ namespace Code
         public int Count()
         {
             return products.Count();
+        }
+
+        public List<object> GetProducts()
+        {
+            return products;
+        }
+
+        public double CalutateTotalCosts()
+        {
+            double totalCosts = 0;
+            for (int i = 0; i <= products.Count - 1; ++i)
+            {
+                double price;
+                _catalog.TryGetValue(products[i], out price);
+                totalCosts += price;
+            }
+            return totalCosts;
         }
     }
 }
